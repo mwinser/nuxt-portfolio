@@ -1,0 +1,26 @@
+button {
+  appearance: none;
+}
+
+button,
+.btn {
+  display: inline-block;
+  width: 12rem;
+  padding: 1em 1em;
+  font-family: $headingFontFamily;
+  line-height: 1;
+  border: 1px solid black;
+  background: white;
+  color: black;
+  border-radius: 2rem;
+  transition: $durationFast;
+
+  @include hocus {
+    background: black;
+    border-color: none;
+    color: gray;
+  }
+}
+.btn a:visited, button a:visited {
+  color: gray;
+}

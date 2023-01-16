@@ -1,0 +1,12 @@
+{
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "files.eol": "\n",
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "less.validate": false,
+  "stylelint.enable": true,
+  "css.validate": false,
+  "scss.validate": false
+}

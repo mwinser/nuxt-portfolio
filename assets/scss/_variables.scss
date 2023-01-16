@@ -1,0 +1,89 @@
+
+// --------------------------------------------------
+//
+// Variables
+// --------------------------------------------------
+// Customize this to meet your project needs
+
+// COLORS
+$gray-50:         #fafafa;
+$gray-100:        #f4f4f5;
+$gray-200:        #e4e4e7;
+$gray-300:        #d4d4d8;
+$gray-400:        #a1a1aa;
+$gray-500:        #71717a;
+$gray-600:        #52525b;
+$gray-700:        #3f3f46;
+$gray-800:        #27272a;
+$gray-900:        #18181b;
+$green-primary:   #00F024;
+$blue-primary:    #14187d;
+$purple-primary:  #520DFC;
+$red-primary:     #FF0E00;
+$orange-primary:  #FC8E0F;
+$yellow-primary:  #D9CE0B;
+
+$defaultTextColor: black;
+$linkColor: black;
+$linkColorHover: $blue-primary;
+$errorColor: $red-primary;
+
+// TYPOGRAPHY
+$text-xs: .75rem;
+$text-sm: .875rem;
+$text-base: 1.25rem;
+$text-lg: 1.25rem;
+$text-xl: 2rem;
+$text-h6: 1.5rem;
+$text-h5: 1.75rem;
+$text-h4: 2.5rem;
+$text-h3: 3rem;
+$text-h2: 3.5rem;
+$text-h1: 4rem;
+
+$font-thin: 100;
+$font-normal: 400;
+$font-bold: 700;
+
+$baseFontFamily: 'Helvetica Neue Light', sans-serif;
+$headingFontFamily: 'Montserrat Bold', sans-serif;
+
+// DURATIONS
+$durationSlower: 0.75s;
+$durationSlow: 0.5s;
+$durationNormal: 0.3s;
+$durationFast: 0.2s;
+$durationQuick: 0.1s;
+
+// Z-INDEX
+$z-50: 50;
+$z-40: 40;
+$z-30: 30;
+$z-20: 20;
+$z-10: 10;
+
+// GRID
+$grid-breakpoints: (
+  xs: 500px,
+  sm: 768px,
+  md: 1024px,
+  lg: 1366px,
+  xl: 1920px
+) !default;
+
+/**
+  Media Breakpoint Example
+
+  @include media-breakpoint-up(sm) {
+    //do something
+  }
+  @include media-breakpoint-down(sm) {
+    //do something
+  }
+  @include media-breakpoint-between(sm, md) {
+    //do something
+  }
+
+  @see ./_breakpoints.scss
+
+**/

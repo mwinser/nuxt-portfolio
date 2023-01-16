@@ -1,0 +1,124 @@
+image: node:16-alpine
+definitions:
+  steps:
+    - step: &Node-Install
+        name: Node Install
+        script:
+          - npm i
+        artifacts:
+          - node_modules/**
+    - step: &Deploy-Nuxt-Main
+        name: Deploy Nuxt Main
+        size: 2x
+        script:
+          - npm run generate:main
+          - pipe: atlassian/aws-s3-deploy:0.4.5
+            variables:
+              S3_BUCKET: ${PROJECT_NAME}-${BITBUCKET_BRANCH}-main-us-east-1
+              LOCAL_PATH: './dist/main'
+    - step: &Deploy-Nuxt-Coming-Soon
+        name: Deploy Nuxt Coming Soon
+        size: 2x
+        script:
+          - npm run generate:comingSoon
+          - pipe: atlassian/aws-s3-deploy:0.4.5
+            variables:
+              S3_BUCKET: ${PROJECT_NAME}-${BITBUCKET_BRANCH}-coming-soon-us-east-1
+              LOCAL_PATH: './dist/comingSoon'
+    - step: &Deploy-Nuxt-Maintenance
+        name: Deploy Nuxt Maintenance
+        size: 2x
+        script:
+          - npm run generate:maintenance
+          - pipe: atlassian/aws-s3-deploy:0.4.5
+            variables:
+              S3_BUCKET: ${PROJECT_NAME}-${BITBUCKET_BRANCH}-maintenance-us-east-1
+              LOCAL_PATH: './dist/maintenance'
+    - step: &Deploy-Nuxt-Promo-Over
+        name: Deploy Nuxt Promo Over
+        size: 2x
+        script:
+          - npm run generate:promoOver
+          - pipe: atlassian/aws-s3-deploy:0.4.5
+            variables:
+              S3_BUCKET: ${PROJECT_NAME}-${BITBUCKET_BRANCH}-promo-over-us-east-1
+              LOCAL_PATH: './dist/promoOver'
+    - step: &Deploy-Blank
+        name: Deploy Blank
+        script:
+          - mkdir ./dist
+          - mkdir ./dist/blank
+          - touch ./dist/blank/index.html
+          - echo "<h1>404 Not Found</h1>" >> ./dist/blank/404.html
+          - pipe: atlassian/aws-s3-deploy:0.4.5
+            variables:
+              S3_BUCKET: ${PROJECT_NAME}-${BITBUCKET_BRANCH}-blank-us-east-1
+              LOCAL_PATH: './dist/blank'
+pipelines:
+  branches:
+    still:
+      - step:
+          name: Deploy Still
+          size: 2x
+          script:
+            - npm i
+            - npm run generate
+            - pipe: atlassian/aws-s3-deploy:0.2.2
+              variables:
+                AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID_STILL
+                AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY_STILL
+                AWS_DEFAULT_REGION: 'us-west-2'
+                S3_BUCKET: 'still-sites/${S3_BUCKET}/${BITBUCKET_BUILD_NUMBER}'
+                LOCAL_PATH: './dist/main'
+                ACL: 'public-read'
+    stage:
+      - step:
+          <<: *Node-Install
+      - parallel:
+          - step:
+              <<: *Deploy-Nuxt-Main
+              deployment: Staging - Main
+          - step:
+              <<: *Deploy-Nuxt-Coming-Soon
+          # - step:
+          #     <<: *Deploy-Nuxt-Maintenance
+          - step:
+              <<: *Deploy-Nuxt-Promo-Over
+      - step:
+          name: Invalidate Cloudfront
+          deployment: Staging - Cloudfront
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.4.1
+              variables:
+                DISTRIBUTION_ID: $DISTRIBUTION_ID_MAIN
+            - pipe: atlassian/aws-cloudfront-invalidate:0.4.1
+              variables:
+                DISTRIBUTION_ID: $DISTRIBUTION_ID_COMING_SOON
+            - pipe: atlassian/aws-cloudfront-invalidate:0.4.1
+              variables:
+                DISTRIBUTION_ID: $DISTRIBUTION_ID_MAINTENANCE
+            - pipe: atlassian/aws-cloudfront-invalidate:0.4.1
+              variables:
+                DISTRIBUTION_ID: $DISTRIBUTION_ID_PROMO_OVER
+    main:
+      - step:
+          <<: *Node-Install
+      - parallel:
+          - step:
+              <<: *Deploy-Nuxt-Main
+              deployment: Production - Main
+          - step:
+              <<: *Deploy-Nuxt-Coming-Soon
+          # - step:
+          #     <<: *Deploy-Nuxt-Maintenance
+          - step:
+              <<: *Deploy-Nuxt-Promo-Over
+          - step:
+              <<: *Deploy-Blank
+      - step:
+          name: Invalidate Cloudfront
+          deployment: Production - Cloudfront
+          script:
+            - pipe: atlassian/aws-cloudfront-invalidate:0.4.1
+              variables:
+                DISTRIBUTION_ID: $DISTRIBUTION_ID
