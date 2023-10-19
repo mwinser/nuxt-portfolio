@@ -18,15 +18,18 @@ $gray-800:        #27272a;
 $gray-900:        #18181b;
 $green-primary:   #00F024;
 $blue-primary:    #14187d;
+$blue-accent:     #00A2C7;
 $purple-primary:  #520DFC;
 $red-primary:     #FF0E00;
 $orange-primary:  #FC8E0F;
 $yellow-primary:  #D9CE0B;
-
+$white-primary:   #FFFFFF;
 $defaultTextColor: black;
 $linkColor: black;
 $linkColorHover: $blue-primary;
 $errorColor: $red-primary;
+
+$light-gray:      #343646;
 
 // TYPOGRAPHY
 $text-xs: .75rem;
@@ -38,8 +41,8 @@ $text-h6: 1.5rem;
 $text-h5: 1.75rem;
 $text-h4: 2.5rem;
 $text-h3: 3rem;
-$text-h2: 3.5rem;
-$text-h1: 4rem;
+$text-h2: 5rem;
+$text-h1: 8.75rem;
 
 $font-thin: 100;
 $font-normal: 400;

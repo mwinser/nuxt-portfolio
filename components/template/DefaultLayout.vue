@@ -3,7 +3,7 @@
     AppHeader
     main.site-wrapper--inner
       Nuxt(id="mainContent")
-    AppFooter
+    //- AppFooter
 </template>
 
 <script>

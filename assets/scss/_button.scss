@@ -5,13 +5,12 @@ button {
 button,
 .btn {
   display: inline-block;
-  width: 12rem;
   padding: 1em 1em;
   font-family: $headingFontFamily;
   line-height: 1;
-  border: 1px solid black;
-  background: white;
-  color: black;
+  border: unset;
+  background: $blue-accent;
+  color: $white-primary;
   border-radius: 2rem;
   transition: $durationFast;
 
