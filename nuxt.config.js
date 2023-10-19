@@ -132,8 +132,8 @@ export default {
     devtools: process.env.NODE_ENV !== 'production',
     // Fixes issues with Chrome Devtools: https://github.com/vuejs-templates/webpack/issues/1331
     loaders: {
-      // scss: { sourceMap: process.env.NODE_ENV === 'production' },
-      // vue: { cacheBusting: process.env.NODE_ENV === 'production' },
+      scss: { sourceMap: process.env.NODE_ENV === 'production' },
+      vue: { cacheBusting: process.env.NODE_ENV === 'production' },
     },
     optimizations: {
       minimize: process.env.NODE_ENV === 'production',

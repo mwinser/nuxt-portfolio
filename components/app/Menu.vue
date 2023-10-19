@@ -1,8 +1,12 @@
 <template lang="pug">
 nav
-  nuxt-link(to="/") Home
-  nuxt-link(to="/sample") Sample
-  nuxt-link(to="/register") Register
+  template(v-if="!$store.state.isTablet")
+    nuxt-link.link(to="/") About
+    nuxt-link.link(to="#skills") Skills
+    nuxt-link.link(to="#projects") Projects
+    nuxt-link.link(to="#contact") Contact
+  button Download CV
+  .hamburger ☰
 </template>
 
 <script>
@@ -15,8 +19,17 @@ export default {
 nav {
   display: flex;
   justify-content: right;
-  & > * {
-    margin: 0 0.5rem;
+  align-items: center;
+  gap: 2.5rem;
+  height: 100%;
+  width: 100%;
+  .link {
+    font-size: 2.25rem;
+    font-weight: bold;
+  }
+  .hamburger {
+    font-size: 60px;
+    margin-bottom: 10px;
   }
 }
 </style>
