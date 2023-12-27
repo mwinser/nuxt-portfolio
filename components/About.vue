@@ -3,22 +3,22 @@
     .about-container.max-width
       .panel
         p.eyebrow // About
-        h5 Web Developer, based<br/>in the Pacific Northwest
+        h5 Internet wizard
         p I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
         button Read More
       .panel.right 
-        h5 Fast, efficient, quality, reliable.<br>Choose the car commercial buzzword<br>and that’s me.
-        p I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
+        h5 Fast, efficient, quality, reliable.<br>Choose the car commercial buzzword<br>and that's me.
+        p environmentally friendly?
         .stats 
           .stat 
-            h3 2
+            h3 2<sup>+</sup>
             p Years of Experience
           .stat 
-            h3 25
+            h3 30<sup>+</sup>
             p Projects
           .stat 
             h3 1
-            p Advanced Degree
+            p Master's Degree
     .overflow-images.max-width 
       img(src="~/assets/images/placeholder.jpg")
       img(src="~/assets/images/placeholder.jpg")
@@ -26,8 +26,25 @@
   </template>
 
 <script>
+import { gsap } from 'gsap'
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
+gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'About',
+  mounted() {
+    gsap.from('.stat', {
+      scrollTrigger: {
+        trigger: '.stat',
+        start: 'top 80%',
+        markers: true,
+      },
+      opacity: 0,
+      duration: 1.5,
+      x: '100%',
+      ease: 'elastic.out(0.7, 0.6)',
+      stagger: 0.5,
+    })
+  },
 }
 </script>
 
@@ -40,6 +57,9 @@ section.about {
   align-items: flex-start;
   @include media-breakpoint-down(sm) {
     height: auto;
+  }
+  sup {
+    vertical-align: top;
   }
   .about-container {
     display: flex;
@@ -95,6 +115,27 @@ section.about {
       .stats {
         display: flex;
         gap: 2rem;
+        .stat {
+          display: flex;
+          flex-direction: column;
+          justify-content: flex-start;
+          align-items: flex-start;
+          background-color: $blue-accent;
+          border-radius: 1rem;
+          padding: 2rem;
+          h3 {
+            font-size: 3rem;
+            font-weight: 600;
+            color: $white-primary;
+            margin-bottom: 0.5rem;
+          }
+          p {
+            font-size: 2rem;
+            font-weight: 600;
+            line-height: 1.5;
+            color: $white-primary;
+          }
+        }
       }
       @include media-breakpoint-down(sm) {
         width: 80%;

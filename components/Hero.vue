@@ -2,7 +2,8 @@
   section.hero
     .hero-container.max-width
       .panel.left 
-        h2 Mike<br/>Winser
+        h2 Mike
+        h2 Winser
         .line-break 
         .social-icons
           .icon(v-for="i in 3" :key="i")
@@ -10,14 +11,45 @@
               img(src="~/assets/images/linkedin.svg")
       .panel.right 
         p.eyebrow // Introduction
-        h5 Web Developer, based<br/>in the Pacific Northwest
-        p I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
-        button My Story
+        h5.fromRight Web Developer
+        h5.fromRight in the Pacific Northwest
+        p.fromRight I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
+        button.my-story My Story
   </template>
 
 <script>
+import { gsap } from 'gsap'
 export default {
   name: 'Hero',
+  mounted() {
+    gsap.from('h2', {
+      opacity: 0,
+      duration: 1.5,
+      x: '-100%',
+      ease: 'power4.out',
+      stagger: 0.25,
+    })
+    gsap.from('p.eyebrow', {
+      delay: 0.5,
+      opacity: 0,
+      duration: 1.5,
+      ease: 'power4.out',
+    })
+    gsap.from('.fromRight', {
+      delay: 0.5,
+      opacity: 0,
+      duration: 1.5,
+      x: '100%',
+      ease: 'power4.out',
+      stagger: 0.25,
+    })
+    gsap.to('button.my-story', {
+      delay: 1.5,
+      opacity: 1,
+      duration: 1.5,
+      ease: 'power4.out',
+    })
+  },
 }
 </script>
 
@@ -95,7 +127,8 @@ section.hero {
           line-height: 1.5;
           color: #b8b9c0;
         }
-        button {
+        button.my-story {
+          opacity: 0;
           justify-self: flex-end;
           color: $blue-accent;
           background: transparent;
