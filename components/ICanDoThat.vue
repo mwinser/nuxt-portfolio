@@ -15,17 +15,18 @@ export default {
       scrollTrigger: {
         trigger: this.$el,
         start: '0 middle',
-        end: 'bottom-=75%',
+        end: 'bottom-=25%',
         scrub: true,
-        markers: true,
+        // markers: true,
         pin: true,
         anticipatePin: 1,
         pinSpacing: true,
       },
       scale: 50,
-      rotate: 270,
-      x: 2800,
-      ease: 'power4.out',
+      rotate: 90,
+      x: 500,
+      y: 540,
+      ease: 'linear',
     })
   },
 }
@@ -33,14 +34,12 @@ export default {
 
 <style lang="scss" scoped>
 section.i-can {
-  background: $light-gray;
   width: 100%;
   min-height: 56.25vw;
   height: 100vh;
   display: flex;
   align-items: center;
   padding-top: 8rem;
-  border-radius: 2rem;
   overflow: hidden;
   @include media-breakpoint-down(sm) {
     height: auto;
