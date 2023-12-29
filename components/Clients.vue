@@ -1,50 +1,50 @@
 <template lang="pug">
   section#clients
-    .about-container.max-width
-      .panel
-        p.eyebrow // Notable Clients
-        h5 Internet wizard
-        p I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
-        button Read More
-      .panel.right 
-        h5 Fast, efficient, quality, reliable.<br>Choose the car commercial buzzword<br>and that's me.
-        p environmentally friendly?
-        .clients 
-          .client 
-            h3 2<sup>+</sup>
-            p Years of Experience
-          .client 
-            h3 30<sup>+</sup>
-            p Projects
-          .client 
-            h3 1
-            p Master's Degree
-    .overflow-images.max-width 
-      img(src="~/assets/images/placeholder.jpg")
-      img(src="~/assets/images/placeholder.jpg")
-      img(src="~/assets/images/placeholder.jpg")
+    .client-grid-container.max-width
+      p.eyebrow // Notable Clients
+      .client-grid 
+        .client
+          .card
+            h4 Nike
+            p Smart Store 
+        .client
+          .card
+            h4 Pepsi
+            p Summer Better with Pepsi
+        .client
+          .card
+            h4 AT&amp;T
+            p Annihilator Cup 2022 and 2023
+        .client
+          .card 
+            h4 Calbee 
+            p Calbe North America website
+        .client
+          .card
+            h4 USAA Real Estate
+            p Affinius Capital Rebrand/Merger
+            img(src="~/assets/images/nike-logo.webp")
+        .client
+          .card 
+            h4 MiracleGro
+            p Garden Escape Kit Sweepstakes
+        .client
+          .card 
+            h4 14Four
+            p Website redesign
+        .client
+          .card 
+            h4 North Carolina Education Lottery
+            p $10M Cash Launcher AR experience
+        .client
+          .card 
+            h4 Capn Crunch
+            p Capn Crunch Arcade Game
   </template>
 
 <script>
-import { gsap } from 'gsap'
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
-gsap.registerPlugin(ScrollTrigger)
 export default {
   name: 'Clients',
-  mounted() {
-    gsap.from('.client', {
-      scrollTrigger: {
-        trigger: '.client',
-        start: 'top 80%',
-        // markers: true,
-      },
-      opacity: 0,
-      duration: 1.5,
-      x: '100%',
-      ease: 'elastic.out(0.7, 0.6)',
-      stagger: 0.5,
-    })
-  },
 }
 </script>
 
@@ -61,99 +61,92 @@ section#clients {
   sup {
     vertical-align: top;
   }
-  .about-container {
+  .client-grid-container {
     display: flex;
+    flex-direction: column;
     justify-content: flex-start;
-    align-items: flex-start;
-    padding: 4rem 6rem 16.5rem;
+    align-items: stretch;
+    padding: 4rem 6rem;
     gap: 5rem;
     @include media-breakpoint-down(sm) {
-      flex-direction: column;
       height: auto;
       padding: 2rem;
     }
-    .panel {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      align-items: flex-start;
-      text-align: left;
-      width: 27%;
-      min-width: 23rem;
-      &.right {
-        width: 100%;
-      }
-      p.eyebrow {
-        font-size: 1.5rem;
-        font-weight: $font-thin;
-        text-transform: uppercase;
 
-        color: #7d7f88;
-      }
-      h5 {
-        line-height: 1.2;
-      }
-      p {
-        font-size: 1.5rem;
-        font-weight: 400;
-        line-height: 1.5;
-        color: #b8b9c0;
-      }
-      button {
-        justify-self: flex-end;
-        color: $blue-accent;
-        background: transparent;
-        border: none;
-        cursor: pointer;
-        text-decoration: underline;
-        margin-top: 4.5rem;
-        padding-left: 0;
-        &:hover {
-          color: $white-primary;
-        }
-      }
-      .clients {
-        display: flex;
-        gap: 2rem;
-        .client {
-          display: flex;
-          flex-direction: column;
-          justify-content: flex-start;
-          align-items: flex-start;
-          background-color: $blue-accent;
-          border-radius: 1rem;
-          padding: 2rem;
-          h3 {
-            font-size: 3rem;
-            font-weight: 600;
-            color: $white-primary;
-            margin-bottom: 0.5rem;
-          }
-          p {
-            font-size: 2rem;
-            font-weight: 600;
-            line-height: 1.5;
-            color: $white-primary;
-          }
-        }
-      }
-      @include media-breakpoint-down(sm) {
-        width: 80%;
-        min-width: 22rem;
-        text-align: center;
-        margin-bottom: 2rem;
-        align-items: center;
-      }
+    p.eyebrow {
+      align-self: flex-start;
+      font-size: 1.5rem;
+      font-weight: $font-thin;
+      text-transform: uppercase;
+      color: #7d7f88;
     }
   }
-  .overflow-images {
-    position: absolute;
-    bottom: -15%;
-    right: 0;
-    left: 0;
-    display: flex;
-    justify-content: center;
+
+  .client-grid {
+    display: grid;
     gap: 2rem;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    transition: 500ms ease-in-out;
+    /* transition-delay: 500ms; */
+    &:has(.client:nth-child(3n - 2):hover) {
+      grid-template-columns: 2fr 0.5fr 0.5fr;
+      transition-delay: 0;
+    }
+    &:has(.client:nth-child(3n - 1):hover) {
+      grid-template-columns: 0.5fr 2fr 0.5fr;
+      transition-delay: 0;
+    }
+    &:has(.client:nth-child(3n):hover) {
+      grid-template-columns: 0.5fr 0.5fr 2fr;
+      transition-delay: 0;
+    }
+    .client {
+      .card {
+        position: relative;
+        overflow: hidden;
+        height: 25vw;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: flex-start;
+        text-align: left;
+        background-color: $blue-accent;
+        background-position: center center;
+        background-size: cover;
+        border-radius: 1rem;
+        padding: 2rem;
+        grid-column: span 1;
+        transition: 500ms ease-in-out;
+        transition-delay: 0;
+
+        h4 {
+          color: $white-primary;
+        }
+        p {
+          opacity: 0;
+          font-size: 2rem;
+          font-weight: 600;
+          line-height: 1.5;
+          color: $white-primary;
+          transition: 250ms ease-in-out 0;
+        }
+        img {
+          position: absolute;
+          top: 0;
+          height: 100%;
+          object-fit: cover;
+        }
+      }
+      &:hover .card {
+        transition-delay: 500ms;
+        transform: rotateY(180deg) scaleX(-1);
+        p {
+          opacity: 1;
+          transition: 250ms ease-in-out 750ms;
+        }
+      }
+    }
   }
 }
 </style>
