@@ -61,7 +61,7 @@ section.hero {
   max-height: 67.5rem;
   display: flex;
   align-items: center;
-  padding-top: 8rem;
+  padding-top: 4rem;
   @include media-breakpoint-down(sm) {
     height: auto;
   }
@@ -113,9 +113,8 @@ section.hero {
         width: 40%;
         p.eyebrow {
           font-size: 1.5rem;
-          font-weight: 600;
+          font-weight: $font-thin;
           text-transform: uppercase;
-          letter-spacing: 0.1rem;
           color: #7d7f88;
         }
         h5 {
@@ -123,7 +122,6 @@ section.hero {
         }
         p {
           font-size: 1.5rem;
-          font-weight: 400;
           line-height: 1.5;
           color: #b8b9c0;
         }

@@ -1,22 +1,22 @@
 <template lang="pug">
-  section#about
+  section#clients
     .about-container.max-width
       .panel
-        p.eyebrow // About
+        p.eyebrow // Notable Clients
         h5 Internet wizard
         p I'm a web developer with a passion for creating beautiful, responsive websites and applications. I'm currently available for hire.
         button Read More
       .panel.right 
         h5 Fast, efficient, quality, reliable.<br>Choose the car commercial buzzword<br>and that's me.
         p environmentally friendly?
-        .stats 
-          .stat 
+        .clients 
+          .client 
             h3 2<sup>+</sup>
             p Years of Experience
-          .stat 
+          .client 
             h3 30<sup>+</sup>
             p Projects
-          .stat 
+          .client 
             h3 1
             p Master's Degree
     .overflow-images.max-width 
@@ -30,11 +30,11 @@ import { gsap } from 'gsap'
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger'
 gsap.registerPlugin(ScrollTrigger)
 export default {
-  name: 'About',
+  name: 'Clients',
   mounted() {
-    gsap.from('.stat', {
+    gsap.from('.client', {
       scrollTrigger: {
-        trigger: '.stat',
+        trigger: '.client',
         start: 'top 80%',
         // markers: true,
       },
@@ -49,7 +49,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-section#about {
+section#clients {
   position: relative;
   width: 100%;
   display: flex;
@@ -87,6 +87,7 @@ section#about {
         font-size: 1.5rem;
         font-weight: $font-thin;
         text-transform: uppercase;
+
         color: #7d7f88;
       }
       h5 {
@@ -111,10 +112,10 @@ section#about {
           color: $white-primary;
         }
       }
-      .stats {
+      .clients {
         display: flex;
         gap: 2rem;
-        .stat {
+        .client {
           display: flex;
           flex-direction: column;
           justify-content: flex-start;

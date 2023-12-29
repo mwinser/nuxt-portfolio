@@ -1,10 +1,10 @@
 <template lang="pug">
 .home(ref="home")
   Hero
-  About.fade-in
-  ICanDoThat.fade-in
-  Skills.fade-in
-  ICanDoThat.fade-in
+  About
+  ICanDoThat
+  Clients
+  Skills
   //- Projects
   //- Contact
 

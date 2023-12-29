@@ -14,24 +14,22 @@ export default {
 <style lang="scss" scoped>
 header {
   position: fixed;
-  width: 100%;
+  // width: 41%;
   top: 0;
-  left: 0;
   right: 0;
-  height: 8rem;
   text-align: right;
-  background: $light-gray;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.025) 100%
+  );
   color: white;
   z-index: 10;
-  padding: 2rem 1rem;
-  @include media-breakpoint-up(md) {
-    padding: 2rem 2rem;
-  }
-  @include media-breakpoint-up(lg) {
-    padding: 2rem 4rem;
-  }
-  @include media-breakpoint-up(xl) {
-    padding: 2rem 6rem;
-  }
+  padding: 1rem 4rem 1rem;
+  backdrop-filter: blur(3px);
+  border-bottom: 1px inset rgba(255, 255, 255, 0.025);
+  border-left: 2px inset rgba(255, 255, 255, 0.025);
+  border-bottom-left-radius: 1rem;
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 0.02);
 }
 </style>

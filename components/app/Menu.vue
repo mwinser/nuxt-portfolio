@@ -1,11 +1,11 @@
 <template lang="pug">
 nav
   template(v-if="!$store.state.isTablet")
-    nuxt-link.link(to="/") About
+    nuxt-link.link(to="#about") About
     nuxt-link.link(to="#skills") Skills
     nuxt-link.link(to="#projects") Projects
     nuxt-link.link(to="#contact") Contact
-  button Download CV
+  //- button Download CV
   .hamburger ☰
 </template>
 
@@ -25,11 +25,21 @@ nav {
   width: 100%;
   .link {
     font-size: 2.25rem;
-    font-weight: bold;
+    font-weight: $font-bold;
+    font-family: $headingFontFamily;
+    text-shadow: 0 0 2rem rgba(0, 0, 0, 0.3);
+    color: $gray-500;
+    &.nuxt-link-active {
+      color: $white-primary;
+    }
   }
   .hamburger {
+    display: none;
     font-size: 60px;
     margin-bottom: 10px;
+    @include media-breakpoint-down(sm) {
+      display: block;
+    }
   }
 }
 </style>
